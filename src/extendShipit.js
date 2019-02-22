@@ -4,10 +4,9 @@ function extendShipit(shipit) {
   Shipit.prototype.sshOptions = function sshOptions(options) {
     const realOptions = Object.assign(
       {},
-      this.config.bastionOptions || {},
+      shipit.config.bastionOptions || {},
       options || {}
     );
-
     return realOptions;
   };
 }
