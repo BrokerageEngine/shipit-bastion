@@ -12,9 +12,9 @@
     "test:watch": "npm test -- --watch",
     "test:examples": "node examples/",
     "cover": "istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
-    "lint": "eslint src test",
+    "lint": "eslint src",
     "build": "cross-env BABEL_ENV=production babel --requrie babel-polyfill src --out-dir lib",
-    "prepublishOnly": "npm run clean && npm run lint && npm run test && npm run build"
+    "prepublishOnly": "npm run clean && npm run lint  && npm run build"
   },
   "files": [
     "lib",
