@@ -1,4 +1,4 @@
-const babelPollyfill = require("babel-polyfill");
+//const babelPollyfill = require("babel-polyfill");
 const sshTask = require("./tasks/ssh");
 const extendShipit = require("./extendShipit");
 
