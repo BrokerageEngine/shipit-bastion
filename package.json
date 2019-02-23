@@ -3,27 +3,12 @@
   "version": "0.0.2",
   "description": "This package adds support for bastion or jump hosts to the shipit deploy tasks",
   "main": "./lib/index.js",
-  "scripts": {
-    "prettier": "echo 'Applying prettier....' && prettier --write \"{src,test}/**/*.{js,jsx,css,scss,graphql}\" > /dev/null  && exit 0",
-    "clean": "rimraf lib",
-    "test": "npm run lint && npm run cover",
-    "test:prod": "cross-env BABEL_ENV=production npm run test",
-    "test:only": "mocha --require babel-core/register --require babel-polyfill --recursive",
-    "test:watch": "npm test -- --watch",
-    "test:examples": "node examples/",
-    "cover": "istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
-    "lint": "eslint src",
-    "build": "cross-env BABEL_ENV=production babel --requrie babel-polyfill src --out-dir lib",
-    "prepublishOnly": "npm run clean && npm run lint  && npm run build"
+  "engines": {
+    "node": ">=6"
   },
-  "files": [
-    "lib",
-    "src"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BrokerageEngine/shipit-bastion.git"
-  },
+  "license": "MIT",
+  "author": "Brokerage Engine, Inc <npm@brokerageengine.com>",
+  "repository": "https://github.com/BrokerageEngine/shipit-bastion",
   "keywords": [
     "shipit",
     "automation",
@@ -34,32 +19,35 @@
     "proxyCommand",
     "ssh"
   ],
-  "author": "Brokerage Engine, Inc <npm@brokerageengine.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/BrokerageEngine/shipit-bastion/issues"
+  "scripts": {
+    "prebuild": "rm -rf lib/",
+    "build": "babel --config-file ./babel.config.js -d lib --ignore \"**/*.test.js\" src",
+    "prepublishOnly": "npm run build"
   },
-  "homepage": "https://github.com/BrokerageEngine/shipit-bastion#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-transform-regenerator": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "chai": "^4.1.2",
-    "cross-env": "^5.1.3",
-    "eslint": "^5.14.0",
-    "eslint-config-airbnb": "^17.1.0",
+    "babel-jest": "^24.1.0",
+    "babel-preset-env": "^1.7.0",
+    "chalk": "^2.4.1",
+    "codecov": "^3.1.0",
+    "conventional-github-releaser": "^3.1.2",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "istanbul": "^1.0.0-alpha",
-    "mocha": "^6.0.1",
-    "prettier": "^1.16.4",
-    "rimraf": "^2.6.2"
+    "eslint-plugin-import": "^2.14.0",
+    "glob": "^7.1.3",
+    "jest": "^24.1.0",
+    "micromatch": "^3.1.9",
+    "mkdirp": "^0.5.1",
+    "mock-utf8-stream": "^0.1.1",
+    "prettier": "^1.14.3",
+    "std-mocks": "^1.0.1",
+    "string-length": "^2.0.0"
   },
   "dependencies": {
     "ssh-proxy-pool": "^0.0.2",
