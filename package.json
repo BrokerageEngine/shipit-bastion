@@ -62,7 +62,7 @@
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "ssh-proxy-pool": "../ssh-proxy-pool",
+    "ssh-proxy-pool": "^0.0.1",
     "shipit-utils": "^1.4.1"
   }
 }

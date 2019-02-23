@@ -1,10 +1,15 @@
-const utils = require("shipit-utils");
 const extendShipit = require("../../extendShipit");
 const { ProxyConnectionPool, Connection } = require("ssh-proxy-pool");
 
-module.exports = shipit => {
-  utils.registerTask(shipit, "ssh:setup_bastion", async () => {
 
+module.exports = async shipit => {
+
+
+
+
+
+    shipit.blTask("ssh:setup_bastion", async () => {
+ 
     extendShipit(shipit);
     if (!shipit.config.bastionHost) {
       shipit.config.bastionOptions = {};
@@ -27,17 +32,15 @@ module.exports = shipit => {
           shipit.config.bastionHost
         }`
       };
-	shipit.log("Result", shipit.config.bastionOptions);
+	//shipit.log("Result", shipit.config.bastionOptions);
 
       const connections = shipit.pool.connections.map(connection => {
-        console.log(connection.remote);
         const newConn = new Connection({remote: "nobody@brokerageengine.com"});
         newConn.setFromOriginalConnection(connection);
         return newConn;
       });
       shipit.log("Changing connection pool to proxy connection pool");
       shipit.pool = new ProxyConnectionPool(connections);
-      shipit.pool.run("pwd", shipit.sshOptions());
     }
   });
 };
