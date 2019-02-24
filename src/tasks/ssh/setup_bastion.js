@@ -31,12 +31,9 @@ module.exports = async shipit => {
         proxyUser: shipit.config.bastionUser,
         proxyHost: shipit.config.bastionHost,
     };
-	//shipit.log("Result", shipit.config.bastionOptions);
- /* proxy: `ssh -W %h:%p ${shipit.config.bastionUser}@${
-    shipit.config.bastionHost
-  }`*/
+
       const connections = shipit.pool.connections.map(connection => {
-        const newConn = new Connection({remote: "nobody@brokerageengine.com"});
+        const newConn = new Connection({remote: "nobody@brokerageengine.com"}); //DJE - this gets the super constructor to pass
         newConn.setFromOriginalConnection(connection);
         newConn.addOptions(shipit.config.bastionOptions);
         return newConn;
