@@ -16,7 +16,7 @@ module.exports = shipit => {
   shipit.on("task_start", async (event) => {
     if (shipit.pool && 
       !shipit.pool.isProxied 
-      && event.task != "ssh:setup_bastion") {
+      && event.task !== "ssh:setup_bastion") {
       await shipit.start("ssh:setup_bastion");
     }
   });
