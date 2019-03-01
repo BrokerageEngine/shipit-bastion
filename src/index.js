@@ -16,6 +16,7 @@ module.exports = shipit => {
         //console.log("Going to setup the bastion")
       await shipit.start("ssh:setup_bastion");
     }
-    */
   });
+
+    */
 };
