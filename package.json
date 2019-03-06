@@ -1,6 +1,6 @@
 {
   "name": "shipit-bastion",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "This package adds support for bastion or jump hosts to the shipit deploy tasks",
   "main": "./lib/index.js",
   "engines": {
